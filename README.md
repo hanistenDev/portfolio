@@ -21,7 +21,7 @@ npm run dev
 
 Runs at [http://localhost:3000](http://localhost:3000).
 
-For the contact form, copy `.env.example` to `.env.local` and add your EmailJS credentials.
+For the contact form, copy `.env.example` to `.env.local` and add your EmailJS credentials (server-side variables, no `NEXT_PUBLIC_` prefix).
 
 ## Production
 
@@ -34,4 +34,5 @@ npm run start
 
 - `src/content/site.ts` — content and external links
 - `src/components/sections/` — page sections
-- `src/lib/emailjs.ts` — contact form
+- `src/lib/emailjs-server.ts` — server-side contact form
+- `src/app/api/contact/` — contact API route

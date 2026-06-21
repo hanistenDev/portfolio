@@ -6,7 +6,6 @@ import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { siteConfig, socialLinks } from "@/content/site";
-import { isEmailJsConfigured, sendContactEmail } from "@/lib/emailjs";
 
 type FormState = {
   name: string;
@@ -29,13 +28,18 @@ export function Contact() {
     setErrorMessage("");
 
     try {
-      if (!isEmailJsConfigured()) {
-        throw new Error(
-          "Contact form is not configured yet. Add your EmailJS keys to .env.local."
-        );
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Something went wrong. Please try again.");
       }
 
-      await sendContactEmail(form);
       setForm(initialForm);
       setStatus("success");
     } catch (error) {
