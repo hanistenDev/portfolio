@@ -95,7 +95,9 @@ export const webProjectHighlights: Highlight[] = [
 
 type ProjectLink = {
   label: string;
-  href: string;
+  href?: string;
+  note?: string;
+  internal?: boolean;
 };
 
 export type Project = {
@@ -117,8 +119,9 @@ export const projects: Project[] = [
     stack: ["React", "TypeScript", "Tailwind CSS"],
     links: [
       {
-        label: "GitHub",
-        href: "https://github.com/hanistenDev/uccp-frontend",
+        label: "Internal Enterprise Project",
+        note: "Code not publicly available",
+        internal: true,
       },
     ],
   },
@@ -129,7 +132,13 @@ export const projects: Project[] = [
       "Backend API for the data tracking tool. Handles real-time data processing and authentication, and exposes secure endpoints for the frontend application.",
     focus: "Scalable architecture, secure APIs, real-time processing",
     stack: ["Node.js", "Express", "SQL Server"],
-    links: [{ label: "GitHub", href: siteConfig.github }],
+    links: [
+      {
+        label: "Internal Enterprise Project",
+        note: "Code not publicly available",
+        internal: true,
+      },
+    ],
   },
   {
     title: "Wistho Website",
@@ -139,6 +148,20 @@ export const projects: Project[] = [
     focus: "Modern design, responsive UX, performance",
     stack: ["HTML", "CSS", "JavaScript", "React", "Node.js"],
     links: [{ label: "Visit site", href: siteConfig.wistho }],
+  },
+  {
+    title: "Drivaro — Waitlist Platform",
+    category: "Web application",
+    description:
+      "A Next.js waitlist application for the automotive industry. Businesses sign up through a validated form with double opt-in email confirmation, reCAPTCHA protection and rate limiting.",
+    focus: "Form validation, email workflows, secure signup flow",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/hanistenDev/drivaro-waitinglist",
+      },
+    ],
   },
 ];
 

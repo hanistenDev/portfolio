@@ -53,19 +53,37 @@ export function Projects() {
                       ))}
                     </div>
 
-                    <div className="flex flex-wrap gap-4 pt-1">
-                      {project.links.map((link) => (
-                        <a
-                          key={link.label}
-                          href={link.href}
-                          target={link.href.startsWith("http") ? "_blank" : undefined}
-                          rel="noreferrer"
-                          className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-accent-soft"
-                        >
-                          {link.label}
-                          <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                        </a>
-                      ))}
+                    <div className="flex flex-wrap items-center gap-4 pt-1">
+                      {project.links.map((link) =>
+                        link.internal ? (
+                          <div
+                            key={link.label}
+                            className="flex flex-col gap-1.5"
+                          >
+                            <span className="inline-flex w-fit items-center rounded-full border border-border bg-surface-muted/50 px-4 py-1.5 text-sm font-medium text-foreground/90">
+                              {link.label}
+                            </span>
+                            {link.note ? (
+                              <span className="text-xs text-muted">
+                                {link.note}
+                              </span>
+                            ) : null}
+                          </div>
+                        ) : (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            target={
+                              link.href?.startsWith("http") ? "_blank" : undefined
+                            }
+                            rel="noreferrer"
+                            className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-accent-soft"
+                          >
+                            {link.label}
+                            <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                          </a>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
